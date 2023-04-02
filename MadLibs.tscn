@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://MadLibs.gd" type="Script" id=1]
+[ext_resource path="res://gfx/Feltpen.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://gfx/blackboard.jpg" type="Texture" id=3]
+[ext_resource path="res://gfx/blue_button11.png" type="Texture" id=4]
+[ext_resource path="res://gfx/blue_button12.png" type="Texture" id=5]
+[ext_resource path="res://Storie0.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 2 )
+
+[node name="MadLibs" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+custom_constants/separation = 10
+
+[node name="Text" type="Label" parent="VBoxContainer"]
+margin_right = 984.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 0, 400 )
+custom_fonts/font = SubResource( 1 )
+text = "Bem vindo ao IMadLibs, seu jogo de historias fanstasticas!"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 410.0
+margin_right = 984.0
+margin_bottom = 468.0
+custom_constants/separation = 10
+alignment = 2
+
+[node name="TextInput" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+margin_right = 891.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+margin_left = 901.0
+margin_right = 950.0
+margin_bottom = 58.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 960.0
+margin_top = 10.0
+margin_right = 984.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 3 )
+text = "Ir"
+
+[node name="Stories" type="Node" parent="."]
+
+[node name="Storie0" type="Node" parent="Stories"]
+script = ExtResource( 6 )
+questions = PoolStringArray( "um gerundio", "um adjetivo", "um substantivo", "um adjetivo", "um substantivo" )
+storie = "Ela estava %s no parque quando de repente viu um %s %s. Ela se aproximou com curiosidade e descobriu que era um %s %s."
+
+[node name="Storie1" type="Node" parent="Stories"]
+script = ExtResource( 6 )
+questions = PoolStringArray( "um gerundio", "um substantivo (feminino)", "um adjetivo", "um verbo", "um substantivo (feminino)" )
+storie = "Ele estava %s em seu escritório quando recebeu uma %s do seu chefe. Ele leu a mensagem com %s e soube que precisava %s uma %s importante."
+
+[node name="Storie2" type="Node" parent="Stories"]
+script = ExtResource( 6 )
+questions = PoolStringArray( "um gerundio", "um adjetivo", "um substantivo", "um verbo", "um substantivo (feminino)" )
+storie = "Eles estavam %s na praia quando viram uma %s %s. Eles decidiram %s um barco e seguiram a %s em busca de aventura."
+
+[node name="Storie3" type="Node" parent="Stories"]
+script = ExtResource( 6 )
+questions = PoolStringArray( "um verbo", "um substantivo (masculino)", "um verbo", "um gerundio", "um verbo" )
+storie = "Ele sempre quis %s o %s do seu pai, mas sabia que precisava %s seu próprio caminho. Depois de %s por muitos anos, finalmente conseguiu %s seu sonho."
+
+[node name="Storie4" type="Node" parent="Stories"]
+script = ExtResource( 6 )
+questions = PoolStringArray( "um adjetivo", "um verbo", "um verbo", "um substantivo (masculino)" )
+storie = "Ela era %s, mas sempre sonhou em %s. Ela finalmente teve coragem de %s e se surpreendeu com o %s que encontrou."
+
+[node name="Storie5" type="Node" parent="Stories"]
+script = ExtResource( 6 )
+questions = PoolStringArray( "um gerundio", "um adjetivo", "um substantivo", "um adjetivo", "um substantivo", "um adjetivo", "um substantivo", "um verbo (passado)", "um substantivo (feminino)" )
+storie = "Ele foi %s por uma %s %s quando de repente ouviu um %s %s. Ele seguiu o som e encontrou uma %s %s em perigo. Ele %s corajosamente para salvar a %s.|"
+
+[node name="Storie6" type="Node" parent="Stories"]
+script = ExtResource( 6 )
+questions = PoolStringArray( "um adjetivo", "um adjetivo (feminino)", "um substantivo (feminino)", "um adjetivo", "um adjetivo" )
+storie = "Ela se sentia %s no novo emprego, mas quando conheceu uma %s %s, tudo mudou. Ela se tornou %s em sua carreira e %s em sua vida pessoal."
+
+[node name="Storie7" type="Node" parent="Stories"]
+script = ExtResource( 6 )
+questions = PoolStringArray( "um verbo", "um verbo", "um gerundio", "um substantivo (plural)" )
+storie = "Ele decidiu %s o mundo sozinho, sem ninguém para %s. Ele acabou %s por muitos lugares diferentes e encontrou %s incríveis ao longo do caminho. Ele percebeu que não precisava fazer tudo sozinho."
+
+[connection signal="text_entered" from="VBoxContainer/HBoxContainer/TextInput" to="." method="_on_Input_text_entered"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
